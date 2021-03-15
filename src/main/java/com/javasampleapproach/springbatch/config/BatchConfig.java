@@ -25,8 +25,16 @@ public class BatchConfig {
  
      
     @Bean
-    public Job job() {
-        return jobBuilderFactory.get("job")
+    public Job job1() {
+        return jobBuilderFactory.get("job1")
+                .incrementer(new RunIdIncrementer())
+                .flow(step1())
+                .end()
+                .build();
+    }
+    @Bean
+    public Job job2() {
+        return jobBuilderFactory.get("job2")
                 .incrementer(new RunIdIncrementer())
                 .flow(step1())
                 .end()
